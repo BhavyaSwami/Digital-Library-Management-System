@@ -58,11 +58,13 @@ Each service runs independently and uses an in-memory H2 database.
 ```bash
 cd book-service
 mvn spring-boot:run
+```
 
 #### User Service (Port 8082)
 ```bash
 cd user-service
 mvn spring-boot:run
+```
 
 ## 🔌 API Endpoints
 
