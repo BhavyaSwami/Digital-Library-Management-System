@@ -58,3 +58,65 @@ Each service runs independently and uses an in-memory H2 database.
 ```bash
 cd book-service
 mvn spring-boot:run
+
+#### User Service (Port 8082)
+```bash
+cd user-service
+mvn spring-boot:run
+
+## 🔌 API Endpoints
+
+### 📘 Book Service – http://localhost:8081
+
+#### 📗 Book Management
+```
+GET    /api/books                             // Get all books  
+GET    /api/books/{id}                        // Get book by ID  
+POST   /api/books                             // Add a new book  
+PUT    /api/books/{id}                        // Update a book  
+DELETE /api/books/{id}                        // Delete a book  
+```
+
+#### 🔍 Search
+```
+GET /api/books/search/title?title={title}     // Search books by title  
+GET /api/books/search/author?author={author}  // Search books by author  
+```
+
+#### 📦 Availability & Borrowing
+```
+PATCH /api/books/{id}/availability?available={true|false}   // Update book availability  
+POST  /api/books/{id}/borrow?userId={userId}                // Borrow a book  
+POST  /api/books/{id}/return                                // Return a book  
+GET   /api/books/{id}/penalty                               // Calculate penalty for overdue  
+```
+
+---
+
+### 👤 User Service – http://localhost:8082
+
+#### 🧑 User Management
+```
+GET    /api/users                                   // Get all users  
+GET    /api/users/{id}                              // Get user by ID  
+POST   /api/users                                   // Create a new user  
+PUT    /api/users/{id}                              // Update a user  
+DELETE /api/users/{id}                              // Delete a user  
+```
+
+#### 🔍 Search
+```
+GET /api/users/search/name?name={name}                       // Search users by name  
+GET /api/users/search/email?email={email}                   // Search users by email  
+GET /api/users/search/membership?membershipId={id}          // Search users by membership ID  
+```
+
+#### 📚 Borrowing
+```
+GET  /api/borrowings                                        // Get all borrowings  
+GET  /api/borrowings/{id}                                   // Get borrowing by ID  
+GET  /api/borrowings/user/{userId}                          // Get borrowings for a user  
+GET  /api/borrowings/user/{userId}/active                   // Get active borrowings for a user  
+POST /api/borrowings/borrow?userId={userId}&bookId={bookId} // Borrow a book  
+POST /api/borrowings/{id}/return                            // Return a book  
+```
